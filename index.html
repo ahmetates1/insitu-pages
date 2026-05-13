@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Support page for InSitu, a personal AI flashcard app for studying words in context."
+    />
+    <title>InSitu Support</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #fbf7ff;
+        --bg-strong: #241332;
+        --card: rgba(255, 255, 255, 0.84);
+        --text: #1e1726;
+        --muted: #6b6075;
+        --primary: #7c3aed;
+        --primary-dark: #5b21b6;
+        --accent: #06b6d4;
+        --warm: #f59e0b;
+        --ring: rgba(124, 58, 237, 0.22);
+        --shadow: 0 24px 80px rgba(53, 30, 84, 0.18);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at 12% 12%, rgba(124, 58, 237, 0.25), transparent 34rem),
+          radial-gradient(circle at 86% 6%, rgba(6, 182, 212, 0.23), transparent 30rem),
+          linear-gradient(135deg, #fff7ed 0%, var(--bg) 42%, #eef2ff 100%);
+        color: var(--text);
+      }
+
+      a {
+        color: var(--primary-dark);
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .page {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 40px 0;
+      }
+
+      .hero {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(124, 58, 237, 0.14);
+        border-radius: 34px;
+        background:
+          linear-gradient(135deg, rgba(36, 19, 50, 0.96), rgba(74, 29, 120, 0.92)),
+          var(--bg-strong);
+        color: #fff;
+        box-shadow: var(--shadow);
+      }
+
+      .hero::before,
+      .hero::after {
+        position: absolute;
+        border-radius: 999px;
+        content: "";
+        filter: blur(2px);
+        opacity: 0.68;
+      }
+
+      .hero::before {
+        width: 260px;
+        height: 260px;
+        right: -70px;
+        top: -90px;
+        background: rgba(6, 182, 212, 0.42);
+      }
+
+      .hero::after {
+        width: 220px;
+        height: 220px;
+        left: 56%;
+        bottom: -120px;
+        background: rgba(245, 158, 11, 0.42);
+      }
+
+      .hero-inner {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+        gap: 28px;
+        align-items: center;
+        padding: clamp(32px, 6vw, 72px);
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        width: fit-content;
+        margin-bottom: 18px;
+        padding: 9px 14px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.1);
+        color: #efe7ff;
+        font-size: 0.92rem;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+      }
+
+      .badge-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--accent), var(--warm));
+        box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.08);
+      }
+
+      h1 {
+        margin: 0;
+        max-width: 760px;
+        font-size: clamp(2.6rem, 7vw, 5.7rem);
+        line-height: 0.94;
+        letter-spacing: -0.07em;
+      }
+
+      .hero p {
+        max-width: 640px;
+        margin: 24px 0 0;
+        color: #e7ddf5;
+        font-size: clamp(1.06rem, 2vw, 1.28rem);
+        line-height: 1.7;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 32px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 0 18px;
+        border-radius: 16px;
+        background: #fff;
+        color: var(--primary-dark);
+        font-weight: 900;
+        box-shadow: 0 14px 36px rgba(0, 0, 0, 0.2);
+      }
+
+      .button.secondary {
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        background: rgba(255, 255, 255, 0.09);
+        color: #fff;
+        box-shadow: none;
+      }
+
+      .phone-card {
+        justify-self: center;
+        width: min(310px, 100%);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 30px;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 18px;
+        backdrop-filter: blur(18px);
+      }
+
+      .flashcard {
+        min-height: 360px;
+        border-radius: 24px;
+        background:
+          linear-gradient(160deg, rgba(255, 255, 255, 0.98), rgba(250, 245, 255, 0.92)),
+          #fff;
+        color: var(--text);
+        padding: 24px;
+      }
+
+      .flashcard small {
+        display: inline-flex;
+        margin-bottom: 52px;
+        padding: 7px 11px;
+        border-radius: 999px;
+        background: #ede9fe;
+        color: var(--primary-dark);
+        font-weight: 900;
+      }
+
+      .word {
+        margin: 0;
+        font-size: 2.6rem;
+        font-weight: 950;
+        letter-spacing: -0.05em;
+      }
+
+      .meaning {
+        margin: 10px 0 0;
+        color: var(--muted);
+        font-size: 1.02rem;
+        line-height: 1.55;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin-top: 32px;
+      }
+
+      .stat {
+        border-radius: 18px;
+        background: #f7f0ff;
+        padding: 12px 10px;
+        text-align: center;
+      }
+
+      .stat strong {
+        display: block;
+        color: var(--primary-dark);
+        font-size: 1.25rem;
+      }
+
+      .stat span {
+        color: var(--muted);
+        font-size: 0.78rem;
+        font-weight: 800;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        margin-top: 22px;
+      }
+
+      section {
+        margin-top: 26px;
+      }
+
+      .section-title {
+        margin: 0 0 14px;
+        font-size: clamp(1.5rem, 3vw, 2.2rem);
+        letter-spacing: -0.04em;
+      }
+
+      .card {
+        border: 1px solid rgba(124, 58, 237, 0.12);
+        border-radius: 26px;
+        background: var(--card);
+        padding: 24px;
+        box-shadow: 0 16px 48px rgba(53, 30, 84, 0.08);
+        backdrop-filter: blur(16px);
+      }
+
+      .card h3 {
+        margin: 0 0 10px;
+        font-size: 1.15rem;
+      }
+
+      .card p,
+      .card li {
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .card p {
+        margin: 0;
+      }
+
+      ul {
+        margin: 0;
+        padding-left: 20px;
+      }
+
+      li + li {
+        margin-top: 8px;
+      }
+
+      .wide {
+        grid-column: span 2;
+      }
+
+      .contact {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 18px;
+        align-items: center;
+        border: 1px solid rgba(124, 58, 237, 0.16);
+        border-radius: 28px;
+        background:
+          linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(6, 182, 212, 0.1)),
+          rgba(255, 255, 255, 0.8);
+        padding: 24px;
+      }
+
+      .contact h2 {
+        margin: 0 0 8px;
+        font-size: 1.45rem;
+      }
+
+      .contact p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      .contact .button {
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        color: #fff;
+        box-shadow: 0 14px 36px var(--ring);
+      }
+
+      footer {
+        margin: 28px 0 0;
+        color: var(--muted);
+        font-size: 0.92rem;
+        text-align: center;
+      }
+
+      @media (max-width: 860px) {
+        .hero-inner,
+        .grid,
+        .contact {
+          grid-template-columns: 1fr;
+        }
+
+        .phone-card {
+          justify-self: stretch;
+        }
+
+        .wide {
+          grid-column: auto;
+        }
+
+        .contact .button {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .page {
+          width: min(100% - 20px, 1120px);
+          padding: 18px 0;
+        }
+
+        .hero {
+          border-radius: 24px;
+        }
+
+        .hero-inner {
+          padding: 26px;
+        }
+
+        .card,
+        .contact {
+          border-radius: 22px;
+          padding: 20px;
+        }
+
+        .actions {
+          flex-direction: column;
+        }
+
+        .button {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <header class="hero">
+        <div class="hero-inner">
+          <div>
+            <div class="badge"><span class="badge-dot"></span>Support for InSitu</div>
+            <h1>Study words where they make sense.</h1>
+            <p>
+              InSitu is a personal AI flashcard app for building vocabulary with context,
+              examples, and lightweight study progress that stays on your device.
+            </p>
+            <div class="actions">
+              <a class="button" href="https://github.com/ahmetates/insitu-support/issues">
+                Get Support
+              </a>
+              <a class="button secondary" href="#privacy">Privacy Summary</a>
+            </div>
+          </div>
+
+          <div class="phone-card" aria-label="InSitu flashcard preview">
+            <div class="flashcard">
+              <small>context card</small>
+              <p class="word">serendipity</p>
+              <p class="meaning">
+                Finding something valuable by chance, then turning it into something you remember.
+              </p>
+              <div class="stats" aria-label="Study progress preview">
+                <div class="stat"><strong>24</strong><span>cards</span></div>
+                <div class="stat"><strong>7</strong><span>streak</span></div>
+                <div class="stat"><strong>XP</strong><span>earned</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section aria-labelledby="help-title">
+        <h2 class="section-title" id="help-title">How Can We Help?</h2>
+        <div class="grid">
+          <article class="card">
+            <h3>Using InSitu</h3>
+            <p>
+              Create flashcards from words, review them with flip cards, and keep your vocabulary
+              practice focused across Turkish, English, Dutch, and Russian.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>AI Generation</h3>
+            <p>
+              When you generate cards, InSitu sends only the text needed for that request to the AI
+              provider. Review generated content before relying on it for study.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Local Progress</h3>
+            <p>
+              Your cards, study stats, XP, and streaks are stored locally on your device. InSitu
+              does not require an account or subscription.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section aria-labelledby="faq-title">
+        <h2 class="section-title" id="faq-title">FAQ</h2>
+        <div class="grid">
+          <article class="card wide">
+            <h3>What should I include in a support request?</h3>
+            <ul>
+              <li>Your device model and operating system version.</li>
+              <li>The action you were trying to complete.</li>
+              <li>Any error message or screenshot that helps explain the issue.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Does InSitu collect analytics?</h3>
+            <p>
+              No. InSitu is designed as a personal study app without login, telemetry, or analytics
+              tracking.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Can I use it offline?</h3>
+            <p>
+              Studying existing cards works locally. AI card generation requires an internet
+              connection.
+            </p>
+          </article>
+
+          <article class="card wide" id="privacy">
+            <h3>Privacy Summary</h3>
+            <p>
+              InSitu keeps your flashcards and study progress on your device. The app does not use
+              user accounts, subscriptions, third-party analytics, or advertising. AI generation may
+              send the words or text you provide to the configured AI service so cards can be
+              created.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="contact" aria-labelledby="contact-title">
+        <div>
+          <h2 id="contact-title">Need help with InSitu?</h2>
+          <p>
+            Open a GitHub issue for bugs, questions, or support requests. Turkish or English support
+            messages are welcome.
+          </p>
+        </div>
+        <a class="button" href="https://github.com/ahmetates/insitu-support/issues/new">
+          Open Support Request
+        </a>
+      </section>
+
+      <footer>
+        <p>&copy; 2026 InSitu. Personal vocabulary study, built for focused practice.</p>
+      </footer>
+    </main>
+  </body>
+</html>
